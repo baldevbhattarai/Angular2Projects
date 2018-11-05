@@ -11,11 +11,12 @@ var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.pageHeader = 'Employee Details';
         this.firstName = 'Tom';
+        this.imagePath = 'https://www.premierleague.com/resources/ver/i/elements/premier-league-logo-header.svg';
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "<div>\n                    <h1>{{pageHeader}}</h1>\n                    <h2>{{'first Name: '+firstName}}</h2>\n                    <my-employee></my-employee>\n               </div>",
+            template: "<div>\n                    <h1>{{pageHeader}}</h1>\n                    <h2>{{'first Name: '+firstName}}</h2>\n                    <img src='{{imagePath}}'/>\n                    <my-employee></my-employee>\n               </div>",
         })
     ], AppComponent);
     return AppComponent;
