@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
+        this.name = "Tom";
     }
     AppComponent.prototype.onClick = function () {
         console.log("Butten clicked ");
@@ -16,7 +17,7 @@ var AppComponent = /** @class */ (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n                <my-employee></my-employee>\n               "
+            template: " <input [value]='name' (input)= 'name=$event.target.value'>\n                <br/>\n                <input value='ram' [(ngModel)]='name'> \n                <br/>\n                The value entered:{{name}}\n               "
         })
     ], AppComponent);
     return AppComponent;
