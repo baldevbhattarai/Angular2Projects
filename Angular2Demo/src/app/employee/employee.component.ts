@@ -1,4 +1,5 @@
 ﻿import { Component } from "@angular/core"
+//import { Component } from "@angular/core"
 
 @Component({
     selector: 'my-employee',
@@ -12,4 +13,10 @@ export class EmployeeComponent
     lastName: string = 'Hopkins';
     gender: string = 'Male';
     age: number = 20;
+    showDetails: boolean = false;
+
+    toggleDetails(): void {
+        this.showDetails = !this.showDetails;
+        console.log("button clicked." + this.showDetails);
+    } 
 }

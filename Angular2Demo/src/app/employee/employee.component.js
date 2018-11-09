@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+//import { Component } from "@angular/core"
 var EmployeeComponent = /** @class */ (function () {
     function EmployeeComponent() {
         this.columnSpan = 2;
@@ -14,7 +15,12 @@ var EmployeeComponent = /** @class */ (function () {
         this.lastName = 'Hopkins';
         this.gender = 'Male';
         this.age = 20;
+        this.showDetails = false;
     }
+    EmployeeComponent.prototype.toggleDetails = function () {
+        this.showDetails = !this.showDetails;
+        console.log("button clicked." + this.showDetails);
+    };
     EmployeeComponent = __decorate([
         core_1.Component({
             selector: 'my-employee',

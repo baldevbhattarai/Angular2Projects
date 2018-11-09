@@ -9,25 +9,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
-        this.pageHeader = 'Employee Details';
-        this.firstName = 'Tom';
-        this.imagePath = 'https://www.premierleague.com/resources/ver/i/elements/premier-league-logo-header.svg';
-        this.isDisabled = false;
-        this.badHtml = 'Hello <script>alert("Hacked");</script> World';
-        this.applyBoldClass = true;
-        this.applyItalicsClass = true;
     }
-    AppComponent.prototype.addClasses = function () {
-        var classes = {
-            boldClass: this.applyBoldClass,
-            italicsClass: this.applyItalicsClass
-        };
-        return classes;
+    AppComponent.prototype.onClick = function () {
+        console.log("Butten clicked ");
     };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "<div>\n                    <h1>{{pageHeader}}</h1>\n                    <h2>{{'first Name: '+firstName}}</h2>\n                    <img src='{{imagePath}}'/>\n                    <!--using property binding: notice that I have used square bracket for image emement source property and quote for component class property.-->\n                    <img [src]='imagePath'/>\n                    <my-employee></my-employee>\n                    {{badHtml}} \n                    <br>\n                  \n                    <button [disabled]='isDisabled'>Click me</button>\n                    <br>  <br/>\n                    <button class='colorClass' [class.boldClass]='!applyBoldClass'>My Button</button>\n                    <br/>\n                    <button class='colorClass' [ngClass]='addClasses()'>My Button</button>\n\n               </div>",
+            template: "\n                <my-employee></my-employee>\n               "
         })
     ], AppComponent);
     return AppComponent;
