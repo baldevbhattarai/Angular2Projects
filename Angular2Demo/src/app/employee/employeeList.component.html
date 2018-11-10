@@ -1,4 +1,9 @@
-﻿<table>
+﻿<employee-count  [all]="getTotalEmployeesCount()"
+                [male]="getMaleEmployeesCount()"
+                [female]="getFemaleEmployeesCount()">
+  
+</employee-count>
+<table>
   <thead>
     <tr>
       <th>Code</th>
@@ -23,5 +28,3 @@
     </tr>
   </tbody>
 </table>
-<br />
-<button (click)='getEmployees()'>Refresh Employees</button>
