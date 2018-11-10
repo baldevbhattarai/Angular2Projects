@@ -34,7 +34,7 @@ export class EmployeeListComponent {
         this.employees = [
             {
                 code: 'emp101', name: 'Tom', gender: 'Male',
-                annualSalary: 5500, dateOfBirth: '25/6/1988'
+                annualSalary: 5500, dateOfBirth: '5/26/1988'
             },
             {
                 code: 'emp102', name: 'Alex', gender: 'Male',
@@ -46,7 +46,7 @@ export class EmployeeListComponent {
             },
             {
                 code: 'emp104', name: 'Mary', gender: 'Female',
-                annualSalary: 6500.826, dateOfBirth: '14/10/1980'
+                annualSalary: 6500.826, dateOfBirth: '4/14/1980'
             },
             {
                 code: 'emp105', name: 'Nancy', gender: 'Female',

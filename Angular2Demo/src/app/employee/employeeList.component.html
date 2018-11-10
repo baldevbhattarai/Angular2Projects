@@ -10,9 +10,9 @@
   </thead>
   <tbody>
     <tr *ngFor='let employee of employees; trackBy:trackByEmpCode'>
-      <td>{{employee.code}}</td>
-      <td>{{employee.name}}</td>
-      <td>{{employee.gender}}</td>
+      <td>{{employee.code|uppercase}}</td>
+      <td>{{employee.name|employeeTitle:employee.gender}}</td>
+      <td>{{employee.gender|lowercase}}</td>
       <td>{{employee.annualSalary| currency:'USD':true:'1.3-3'}}</td>
       <td>{{employee.dateOfBirth | date:'fullDate'}}</td>
     </tr>
