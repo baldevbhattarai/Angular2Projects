@@ -9,10 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// Import Output and EventEmitter
 var core_1 = require("@angular/core");
 var EmployeeCountComponent = /** @class */ (function () {
     function EmployeeCountComponent() {
+        // Holds the selected value of the radio button
+        this.selectedRadioButtonValue = 'All';
+        // The Output decorator makes the property an Output property
+        // EventEmitter class is used to create the custom event
+        // When the radio button selection changes, the selected
+        // radio button value which is a string gets passed to the
+        // event handler method. Hence, the event payload is string.
+        this.countRadioButtonSelectionChanged = new core_1.EventEmitter();
     }
+    // This method raises the custom event. We will bind this
+    // method to the change event of all the 3 radio buttons
+    EmployeeCountComponent.prototype.onRadioButtonSelectionChange = function () {
+        this.countRadioButtonSelectionChanged
+            .emit(this.selectedRadioButtonValue);
+    };
     __decorate([
         core_1.Input(),
         __metadata("design:type", Number)
@@ -25,6 +40,10 @@ var EmployeeCountComponent = /** @class */ (function () {
         core_1.Input(),
         __metadata("design:type", Number)
     ], EmployeeCountComponent.prototype, "female", void 0);
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", core_1.EventEmitter)
+    ], EmployeeCountComponent.prototype, "countRadioButtonSelectionChanged", void 0);
     EmployeeCountComponent = __decorate([
         core_1.Component({
             selector: 'employee-count',
