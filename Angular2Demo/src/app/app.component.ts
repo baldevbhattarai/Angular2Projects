@@ -3,14 +3,12 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'my-app',
-    template: ` <list-employee></list-employee>
-               `
+    template: `Your Text : <input type='text' [(ngModel)]='userText'/>
+               <br/><br/>
+               <simple [simpleInput]='userText'></simple>
+              `
 })
 export class AppComponent {
-    name: string = "Tom";
-
-    onClick(): void {
-        console.log("Butten clicked ")
-    }
+    userText: string = "Bal";
 }
 

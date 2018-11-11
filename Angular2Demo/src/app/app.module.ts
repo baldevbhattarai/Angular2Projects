@@ -7,11 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { EmployeeListComponent } from './employee/employeeList.component';
 import { EmployeeTitlePipe } from './employee/employeeTitle.pipe';
 import { EmployeeCountComponent } from './employee/employeeCount.component';
+import { SimpleComponent } from './others/simple.component';
 
 
 @NgModule({
     imports: [BrowserModule, FormsModule],
-    declarations: [AppComponent, EmployeeComponent, EmployeeListComponent, EmployeeTitlePipe, EmployeeCountComponent],
+    declarations: [AppComponent, EmployeeComponent, EmployeeListComponent, EmployeeTitlePipe, EmployeeCountComponent, SimpleComponent],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
