@@ -1,4 +1,5 @@
 ﻿import { Component } from '@angular/core';
+import { IEmployee } from './employee';
 
 @Component({
     selector: 'list-employee',
@@ -7,7 +8,7 @@
 })
 
 export class EmployeeListComponent {
-    employees: any[];
+    employees: IEmployee[];
 
     // This property keeps track of which radio button is selected
     // We have set the default value to All, so all the employees
