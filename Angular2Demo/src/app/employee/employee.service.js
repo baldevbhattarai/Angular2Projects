@@ -5,46 +5,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+// Import Http & Response from angular HTTP module
+var http_1 = require("@angular/http");
+// Import the map operator
+require("rxjs/add/operator/map");
 // The @Injectable() decorator is used to inject other dependencies
 // into this service. As our service does not have any dependencies
 // at the moment, we may remove the @Injectable() decorator and the
 // service works exactly the same way. However, Angular recomends
 // to always use @Injectable() decorator to ensures consistency
 var EmployeeService = /** @class */ (function () {
-    function EmployeeService() {
+    // Inject Angular http service
+    function EmployeeService(_http) {
+        this._http = _http;
     }
     EmployeeService.prototype.getEmployees = function () {
-        return [
-            {
-                code: 'emp101', name: 'Tom', gender: 'Male',
-                annualSalary: 5500, dateOfBirth: '6/25/1988'
-            },
-            {
-                code: 'emp102', name: 'Alex', gender: 'Male',
-                annualSalary: 5700.95, dateOfBirth: '9/6/1982'
-            },
-            {
-                code: 'emp103', name: 'Mike', gender: 'Male',
-                annualSalary: 5900, dateOfBirth: '12/8/1979'
-            },
-            {
-                code: 'emp104', name: 'Mary', gender: 'Female',
-                annualSalary: 6500.826, dateOfBirth: '10/14/1980'
-            },
-            {
-                code: 'emp105', name: 'Nancy', gender: 'Female',
-                annualSalary: 6700.826, dateOfBirth: '12/15/1982'
-            },
-            {
-                code: 'emp106', name: 'Steve', gender: 'Male',
-                annualSalary: 7700.481, dateOfBirth: '11/18/1979'
-            },
-        ];
+        // To convert Observable<Response> to Observable<IEmployee[]>
+        // we are using the map operator
+        return this._http.get('http://localhost:64475/api/employees')
+            .map(function (response) { return response.json(); });
     };
     EmployeeService = __decorate([
-        core_1.Injectable()
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
     ], EmployeeService);
     return EmployeeService;
 }());

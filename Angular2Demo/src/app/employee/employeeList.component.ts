@@ -13,6 +13,7 @@ import { EmployeeService } from './employee.service'
 })
 
 export class EmployeeListComponent implements OnInit {
+
     employees: IEmployee[];
 
     // This property keeps track of which radio button is selected
@@ -25,7 +26,8 @@ export class EmployeeListComponent implements OnInit {
 
     }
     ngOnInit() {
-        this.employees = this._employeeService.getEmployees();
+        this._employeeService.getEmployees()
+            .subscribe(employeesData => this.employees = employeesData);
     }
 
 
