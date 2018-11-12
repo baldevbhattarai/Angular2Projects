@@ -14,6 +14,7 @@ var employee_service_1 = require("./employee.service");
 var EmployeeListComponent = /** @class */ (function () {
     function EmployeeListComponent(_employeeService) {
         this._employeeService = _employeeService;
+        this.statusMessage = "Loading data. Please wait...";
         // This property keeps track of which radio button is selected
         // We have set the default value to All, so all the employees
         // are displayed in the table by default
@@ -22,7 +23,10 @@ var EmployeeListComponent = /** @class */ (function () {
     EmployeeListComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._employeeService.getEmployees()
-            .subscribe(function (employeesData) { return _this.employees = employeesData; });
+            .subscribe(function (employeesData) { return _this.employees = employeesData; }, function (error) {
+            console.error(error);
+            _this.statusMessage = 'Problem with the service. Please try again after sometime';
+        });
     };
     EmployeeListComponent.prototype.getTotalEmployeesCount = function () {
         return this.employees.length;
