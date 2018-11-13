@@ -13,6 +13,7 @@ import { SimpleComponent } from './others/simple.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './others/pageNotFound.component';
 import { EmployeeService } from './employee/employee.service';
+import { UserPreferencesService } from './employee/userPreferences.service';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -27,6 +28,6 @@ const appRoutes: Routes = [
     imports: [BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes,  { useHash: true })],
     declarations: [AppComponent, EmployeeComponent, EmployeeListComponent, EmployeeTitlePipe, EmployeeCountComponent, SimpleComponent, HomeComponent, PageNotFoundComponent],
     bootstrap: [AppComponent],
-    providers: [EmployeeService]
+    providers: [EmployeeService, UserPreferencesService]
 })
 export class AppModule { }

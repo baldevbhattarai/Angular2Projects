@@ -1,6 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { IEmployee } from './employee';
-import { EmployeeService } from './employee.service'
+import { EmployeeService } from './employee.service';
+import { UserPreferencesService } from './userPreferences.service';
+
 
 @Component({
     selector: 'list-employee',
@@ -20,11 +22,18 @@ export class EmployeeListComponent implements OnInit {
     // We have set the default value to All, so all the employees
     // are displayed in the table by default
     selectedEmployeeCountRadioButton: string = 'All';
-
-
-    constructor(private _employeeService: EmployeeService) {
-
+    constructor(private _employeeService: EmployeeService, private _userPreferencesService: UserPreferencesService) {
+        
     }
+
+    get colour(): string {
+        return this._userPreferencesService.colourPreference;
+    }
+
+    set colour(value: string) {
+        this._userPreferencesService.colourPreference = value;
+    }
+
     ngOnInit() {
         this._employeeService.getEmployees()
             .subscribe(employeesData => this.employees = employeesData, error => {
