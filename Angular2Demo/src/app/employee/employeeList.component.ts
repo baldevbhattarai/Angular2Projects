@@ -34,6 +34,7 @@ export class EmployeeListComponent implements OnInit {
     }
 
 
+
     getTotalEmployeesCount(): number {
         return this.employees.length;
     }
