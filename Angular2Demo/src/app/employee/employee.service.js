@@ -31,7 +31,12 @@ var EmployeeService = /** @class */ (function () {
     EmployeeService.prototype.getEmployees = function () {
         // To convert Observable<Response> to Observable<IEmployee[]>
         // we are using the map operator
-        return this._http.get('http://localhost:64475/api/employeess')
+        return this._http.get('http://localhost:64475/api/employees')
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    EmployeeService.prototype.getEmployeeByCode = function (empCode) {
+        return this._http.get("http://localhost:64475/api/employees/" + empCode)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };

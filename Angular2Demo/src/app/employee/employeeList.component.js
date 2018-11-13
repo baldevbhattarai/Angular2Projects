@@ -50,9 +50,6 @@ var EmployeeListComponent = /** @class */ (function () {
             selector: 'list-employee',
             templateUrl: 'app/employee/employeeList.component.html',
             styleUrls: ['app/employee/employeeList.component.css'],
-            // Register EmployeeService in this component by
-            // declaring it in the providers array
-            providers: [employee_service_1.EmployeeService]
         }),
         __metadata("design:paramtypes", [employee_service_1.EmployeeService])
     ], EmployeeListComponent);

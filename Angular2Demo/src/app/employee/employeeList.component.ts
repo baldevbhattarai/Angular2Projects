@@ -9,7 +9,7 @@ import { EmployeeService } from './employee.service'
 
     // Register EmployeeService in this component by
     // declaring it in the providers array
-    providers: [EmployeeService]
+    //providers: [EmployeeService]
 })
 
 export class EmployeeListComponent implements OnInit {
