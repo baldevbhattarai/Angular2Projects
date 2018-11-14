@@ -32,12 +32,19 @@ export class EmployeeService {
             .map((response: Response) => <IEmployee[]>response.json())
             .catch(this.handleError);
     }
-    getEmployeeByCode(empCode: string): Promise<IEmployee> {
+    //getEmployeeByCode(empCode: string): Promise<IEmployee> {
+    //    return this._http.get("http://localhost:64475/api/employees/" + empCode)
+    //        .map((response: Response) => <IEmployee>response.json())
+    //        .toPromise()
+    //        .catch(this.handlePromiseError);
+    //}
+
+    getEmployeeByCode(empCode: string): Observable<IEmployee> {
         return this._http.get("http://localhost:64475/api/employees/" + empCode)
             .map((response: Response) => <IEmployee>response.json())
-            .toPromise()
-            .catch(this.handlePromiseError);
+            .catch(this.handleError);
     }
+
     // This method is introduced to handle exceptions
     handlePromiseError(error: Response): Promise<any>{
         console.error(error);

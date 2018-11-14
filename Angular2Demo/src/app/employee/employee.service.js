@@ -36,11 +36,16 @@ var EmployeeService = /** @class */ (function () {
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    //getEmployeeByCode(empCode: string): Promise<IEmployee> {
+    //    return this._http.get("http://localhost:64475/api/employees/" + empCode)
+    //        .map((response: Response) => <IEmployee>response.json())
+    //        .toPromise()
+    //        .catch(this.handlePromiseError);
+    //}
     EmployeeService.prototype.getEmployeeByCode = function (empCode) {
         return this._http.get("http://localhost:64475/api/employees/" + empCode)
             .map(function (response) { return response.json(); })
-            .toPromise()
-            .catch(this.handlePromiseError);
+            .catch(this.handleError);
     };
     // This method is introduced to handle exceptions
     EmployeeService.prototype.handlePromiseError = function (error) {

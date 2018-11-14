@@ -12,6 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var employee_service_1 = require("./employee.service");
 var router_1 = require("@angular/router");
+// Import rxjs retry operator
+require("rxjs/add/operator/retry");
+require("rxjs/add/operator/retryWhen");
+require("rxjs/add/operator/delay");
+require("rxjs/add/operator/scan");
 var EmployeeComponent = /** @class */ (function () {
     function EmployeeComponent(_employeeService, _activatedRoute, _router) {
         this._employeeService = _employeeService;
@@ -22,19 +27,48 @@ var EmployeeComponent = /** @class */ (function () {
     EmployeeComponent.prototype.ngOnInit = function () {
         var _this = this;
         var empCode = this._activatedRoute.snapshot.params['code'];
-        this.empcode = empCode;
-        console.log("empcode: " + empCode);
+        //this._employeeService.getEmployeeByCode(empCode)
+        //    .then((employeeData) => {
+        //        if (employeeData == null) {
+        //            this.statusMessage ='Employee with the specified Employee Code does not exist';
+        //        }
+        //        else {
+        //            this.employee = employeeData;
+        //        }
+        //    }).catch((error) => {
+        //        this.statusMessage =
+        //            'Problem with the service. Please try again after sometime';
+        //        console.error(error);
+        //    });
         this._employeeService.getEmployeeByCode(empCode)
-            .then(function (employeeData) {
+            // Chain the retry operator to retry on error foreever
+            //.retry()
+            //retries for 3 times
+            // .retry(3)
+            // Retry 5 times maximum with a delay of 1 second
+            // between each retry attempt
+            .retryWhen(function (err) {
+            return err.scan(function (retryCount, val) {
+                retryCount += 1;
+                if (retryCount < 6) {
+                    _this.statusMessage = 'Retrying...Attempt #' + retryCount;
+                    return retryCount;
+                }
+                else {
+                    throw (err);
+                }
+            }, 0).delay(1000);
+        })
+            .subscribe(function (employeeData) {
             if (employeeData == null) {
-                _this.statusMessage = 'Employee with the specified Employee Code does not exist';
+                _this.statusMessage =
+                    'Employee with the specified Employee Code does not exist';
             }
             else {
                 _this.employee = employeeData;
             }
-        }).catch(function (error) {
-            _this.statusMessage =
-                'Problem with the service. Please try again after sometime';
+        }, function (error) {
+            _this.statusMessage = 'Problem with the service. Please try again after sometime';
             console.error(error);
         });
     };
