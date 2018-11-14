@@ -23,6 +23,7 @@ var EmployeeComponent = /** @class */ (function () {
         this._activatedRoute = _activatedRoute;
         this._router = _router;
         this.statusMessage = 'Loading data. Please wait...';
+        this.retryCount = 1;
     }
     EmployeeComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -40,7 +41,9 @@ var EmployeeComponent = /** @class */ (function () {
         //            'Problem with the service. Please try again after sometime';
         //        console.error(error);
         //    });
-        this._employeeService.getEmployeeByCode(empCode)
+        // Use the subscription property created above to hold on to the
+        // subscription.
+        this.subscription = this._employeeService.getEmployeeByCode(empCode)
             // Chain the retry operator to retry on error foreever
             //.retry()
             //retries for 3 times
@@ -74,6 +77,10 @@ var EmployeeComponent = /** @class */ (function () {
     };
     EmployeeComponent.prototype.onBackButtonClick = function () {
         this._router.navigate(["/employees"]);
+    };
+    EmployeeComponent.prototype.onCancelButtonClick = function () {
+        this.statusMessage = 'Request cancelled';
+        this.subscription.unsubscribe();
     };
     EmployeeComponent = __decorate([
         core_1.Component({
