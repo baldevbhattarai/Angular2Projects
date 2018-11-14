@@ -24,17 +24,15 @@ export class EmployeeComponent implements OnInit {
         console.log("empcode: " + empCode);
 
         this._employeeService.getEmployeeByCode(empCode)
-            .subscribe((employeeData) => {
+            .then((employeeData) => {
                 if (employeeData == null) {
-                    this.statusMessage =
-                        'Employee with the specified Employee Code does not exist';
+                    this.statusMessage ='Employee with the specified Employee Code does not exist';
 
                 }
                 else {
                     this.employee = employeeData;
                 }
-            },
-            (error) => {
+            }).catch((error) => {
                 this.statusMessage =
                     'Problem with the service. Please try again after sometime';
                 console.error(error);

@@ -18,6 +18,8 @@ import 'rxjs/add/Observable/throw';
 // to always use @Injectable() decorator to ensures consistency
 import 'rxjs/add/operator/catch';
 
+import 'rxjs/add/operator/toPromise';
+
 @Injectable()
 export class EmployeeService {
     // Inject Angular http service
@@ -30,12 +32,17 @@ export class EmployeeService {
             .map((response: Response) => <IEmployee[]>response.json())
             .catch(this.handleError);
     }
-    getEmployeeByCode(empCode: string): Observable<IEmployee> {
+    getEmployeeByCode(empCode: string): Promise<IEmployee> {
         return this._http.get("http://localhost:64475/api/employees/" + empCode)
             .map((response: Response) => <IEmployee>response.json())
-            .catch(this.handleError);
+            .toPromise()
+            .catch(this.handlePromiseError);
     }
-
+    // This method is introduced to handle exceptions
+    handlePromiseError(error: Response): Promise<any>{
+        console.error(error);
+        throw (error);
+    }
     handleError(error: Response) {
         console.error(error);
         return Observable.throw(error);

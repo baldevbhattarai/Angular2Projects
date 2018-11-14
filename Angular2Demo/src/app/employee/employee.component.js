@@ -25,15 +25,14 @@ var EmployeeComponent = /** @class */ (function () {
         this.empcode = empCode;
         console.log("empcode: " + empCode);
         this._employeeService.getEmployeeByCode(empCode)
-            .subscribe(function (employeeData) {
+            .then(function (employeeData) {
             if (employeeData == null) {
-                _this.statusMessage =
-                    'Employee with the specified Employee Code does not exist';
+                _this.statusMessage = 'Employee with the specified Employee Code does not exist';
             }
             else {
                 _this.employee = employeeData;
             }
-        }, function (error) {
+        }).catch(function (error) {
             _this.statusMessage =
                 'Problem with the service. Please try again after sometime';
             console.error(error);

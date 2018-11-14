@@ -23,6 +23,7 @@ require("rxjs/add/Observable/throw");
 // service works exactly the same way. However, Angular recomends
 // to always use @Injectable() decorator to ensures consistency
 require("rxjs/add/operator/catch");
+require("rxjs/add/operator/toPromise");
 var EmployeeService = /** @class */ (function () {
     // Inject Angular http service
     function EmployeeService(_http) {
@@ -38,7 +39,13 @@ var EmployeeService = /** @class */ (function () {
     EmployeeService.prototype.getEmployeeByCode = function (empCode) {
         return this._http.get("http://localhost:64475/api/employees/" + empCode)
             .map(function (response) { return response.json(); })
-            .catch(this.handleError);
+            .toPromise()
+            .catch(this.handlePromiseError);
+    };
+    // This method is introduced to handle exceptions
+    EmployeeService.prototype.handlePromiseError = function (error) {
+        console.error(error);
+        throw (error);
     };
     EmployeeService.prototype.handleError = function (error) {
         console.error(error);
